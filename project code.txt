@@ -1,0 +1,41 @@
+//contect on : Mohan angappan,
+	//LinkedIn: https://www.linkedin.com/in/mohan-angappan-491825130
+	//Twitter:https://twitter.com/MohanAngappan
+	//GitHub:https://github.com/MohanAngappan
+	//Gmail:almohan532001@gmail.com
+
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init();
+  lcd.begin(16, 2);
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("   WELCOME TO   ");
+  lcd.setCursor(0, 1);
+  lcd.print("   OUR PROJECT    ");
+  delay(2000);
+  lcd.clear();
+  pinMode(10, OUTPUT); //Buzzer Pin
+  pinMode(7, INPUT); // LDR Sensor
+}
+void loop() {
+  if (digitalRead(7) == !LOW ) // If LDR densor Digital LOW then Buzzer will be turn on for given Time
+  {
+    digitalWrite(10, HIGH);
+    delay(1000); //Value 3000 for 3 seconds
+    lcd.setCursor(0, 0);
+    lcd.print("Person Inter");
+    //lcd.clear();
+  }
+  else {
+    //lcd.clear();
+    digitalWrite(10, LOW);
+
+    lcd.setCursor(0, 0);
+    lcd.print("Anything Else");
+  }
+}
